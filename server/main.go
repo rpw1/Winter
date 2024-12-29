@@ -9,14 +9,17 @@ import (
 )
 
 func main() {
-	var sourceDirectory fs.FS = os.DirFS("../src")
+	fmt.Println("Starting server...")
+	var sourceDirectory fs.FS = os.DirFS("./src")
 	httpFileServer := http.FS(sourceDirectory)
 	indexServerHandler := serveFileContents("index.html", httpFileServer)
 
 	http.Handle("/", http.HandlerFunc(func(responseWriter http.ResponseWriter, request *http.Request) {
     indexServerHandler.ServeHTTP(responseWriter, request)
   }))
-	http.ListenAndServe(":8080", nil)
+	port := 8080
+	fmt.Println(fmt.Sprintf("Listening at port: %d", port))
+	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
 
 func serveFileContents(file string, files http.FileSystem) http.HandlerFunc {
@@ -31,14 +34,14 @@ func serveFileContents(file string, files http.FileSystem) http.HandlerFunc {
     file, err := files.Open(file)
     if err != nil {
       responseWriter.WriteHeader(http.StatusNotFound)
-      fmt.Fprintf(responseWriter, "%s not found", file)
+      fmt.Fprintf(responseWriter, "File: %s not found", file)
       return
     }
 
     fileInfo, err := file.Stat()
     if err != nil {
       responseWriter.WriteHeader(http.StatusNotFound)
-      fmt.Fprintf(responseWriter, "%s not found", fileInfo)
+      fmt.Fprintf(responseWriter, "File Info: %s not found", fileInfo)
       return
     }
 

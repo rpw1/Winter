@@ -4,7 +4,7 @@
   "description": "Building my own SPA framework",
   "main": "index.ts",
   "scripts": {
-    
+    "start": "go build server/main.go && go run server/main.go"
   },
   "author": "rpw1",
   "license": "ISC"
