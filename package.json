@@ -1,0 +1,11 @@
+{
+  "name": "winter",
+  "version": "1.0.0",
+  "description": "Building my own SPA framework",
+  "main": "index.ts",
+  "scripts": {
+    
+  },
+  "author": "rpw1",
+  "license": "ISC"
+}
