@@ -1,7 +1,7 @@
 {
-  "name": "winter",
+  "name": "selector-games",
   "version": "1.0.0",
-  "description": "Building my own SPA framework",
+  "description": "Using own Framework to build selector games.",
   "main": "index.ts",
   "scripts": {
     "start": "go build server/main.go && go run server/main.go"
